@@ -4,9 +4,6 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
 
-/**
- * Created by p998gpy on 2018.03.06.
- */
 public class Loan {
 
     private Date creationDate;

@@ -1,10 +1,5 @@
 package lt.swedbank.itacademy.domain;
 
-import java.util.Objects;
-
-/**
- * Created by p998gpy on 2018.03.07.
- */
 public class CarLoan extends VehicleLoan implements Comparable {
     private float enginePower;
 

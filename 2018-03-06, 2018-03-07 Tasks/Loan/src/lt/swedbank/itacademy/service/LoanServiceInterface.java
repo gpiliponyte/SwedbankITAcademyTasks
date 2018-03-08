@@ -9,9 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * Created by p998gpy on 2018.03.08.
- */
 public interface LoanServiceInterface {
     List<Loan> findExpiredLandLoansInReservation();
 
