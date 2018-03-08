@@ -1,7 +1,5 @@
 package lt.swedbank.itacademy.domain;
 
-import lt.swedbank.itacademy.util.DateUtil;
-
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
@@ -17,10 +15,7 @@ public class Loan {
     private BigDecimal price;
     private BigDecimal interestRate;
     private LoanRiskType riskType;
-
-    public Loan(){
-
-    }
+    private BigDecimal totalLoanCost;
 
     @Override
     public boolean equals(Object o) {
@@ -38,6 +33,14 @@ public class Loan {
     @Override
     public int hashCode() {
         return Objects.hash(getCreationDate(), getTermInYears(), getName(), getPrice(), getInterestRate(), getRiskType());
+    }
+
+    public BigDecimal getTotalLoanCost() {
+        return totalLoanCost;
+    }
+
+    public void setTotalLoanCost(BigDecimal totalLoanCost) {
+        this.totalLoanCost = totalLoanCost;
     }
 
     public void setPrice(BigDecimal price) {
@@ -60,24 +63,12 @@ public class Loan {
         this.riskType = riskType;
     }
 
-    public BigDecimal calculateInterests(){
-        return price.multiply(interestRate).divide(new BigDecimal(100));
-    }
-
-    public BigDecimal getInterestrate(){
+    public BigDecimal getInterestrate() {
         return interestRate;
     }
 
-    public BigDecimal getPrice(){
+    public BigDecimal getPrice() {
         return price;
-    }
-
-    public BigDecimal getTotalLoanCost(){
-        return price.add(calculateInterests());
-    }
-
-    public boolean isValid(){
-        return DateUtil.addYears(creationDate, termInYears).after(new Date());
     }
 
     public Date getCreationDate() {

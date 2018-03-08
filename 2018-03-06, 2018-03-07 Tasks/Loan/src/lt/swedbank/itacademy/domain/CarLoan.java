@@ -16,15 +16,18 @@ public class CarLoan extends VehicleLoan implements Comparable {
         this.enginePower = enginePower;
     }
 
-    public int compareTo(Object o){
+    public int compareTo(Object o) {
 
         CarLoan carLoan = (CarLoan) o;
 
+        if (carLoan.getPrice().compareTo(getPrice()) != 0) {
+            return carLoan.getPrice().compareTo(getPrice());
+        }
 
-            if(getPrice().compareTo(carLoan.getPrice()) == -1) return 1;
-            if(getPrice().compareTo(carLoan.getPrice()) == 1) return -1;
-            if(getEnginePower() > carLoan.getEnginePower()) return -1;
-            if(getEnginePower() < carLoan.getEnginePower()) return 1;
+
+        if(((Float)carLoan.getEnginePower()).compareTo((Float)getEnginePower()) != 0) {
+            return ((Float)carLoan.getEnginePower()).compareTo((Float)getEnginePower());
+        }
 
 
         return getInterestRate().compareTo(carLoan.getInterestRate());

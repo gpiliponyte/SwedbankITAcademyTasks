@@ -9,69 +9,35 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Created by p998gpy on 2018.03.08.
+ */
 public interface LoanServiceInterface {
+    List<Loan> findExpiredLandLoansInReservation();
 
-    List<Loan> getLowRiskHarvesterLoans();
+    List<Loan> findLoansOfHigherThanAverageDepreciation();
 
-    List<Loan> getExpiredLandLoansInReservation();
+    BigDecimal calculateAverageDepreciation();
 
-    List<Loan> getLoansOfHigherThanAverageDepreciation();
+    List<Loan> findLowRiskHarvesterLoans();
 
     Set<Loan> prioritizeLoans();
 
-    int getMaximumAgeOfLowRiskLoanedVehicles();
-
     int calculateMaximumAgeOfLowRiskVehicles();
-
-    void setMaximumAgeOfLowRiskLoanedVehicles(int maximumAgeOfLowRiskLoanedVehicles);
-
-    List<Loan> getPersonalRealEstateLoans();
 
     List<Loan> findRealEstateLoansByPurpose(RealEstatePurpose purpose);
 
-    void setPersonalRealEstateLoans(List<Loan> personalRealEstateLoans);
-
-    List<Loan> getExpiredHighRiskVehicleLoansOfHighestDuration();
-
     List<Loan> findExpiredVehicleLoansOfHighestDurationByRiskType(LoanRiskType loanRiskType);
-
-    void setExpiredHighRiskVehicleLoansOfHighestDuration(List<Loan> expiredHighRiskVehicleLoansOfHighestDuration);
-
-    void setHighRiskLoans(List<Loan> highRiskLoans);
-
-    List<Loan> getHighRiskLoans();
-
-    Loan[] getLoans();
-
-    void setLoans(Loan[] loans);
-
-    List<Loan> getNormalRiskVehicleLoans();
 
     List<Loan> findVehicleLoansByRiskType(LoanRiskType loanRiskType);
 
-    void setNormalRiskVehicleLoans(List<Loan> normalRiskVehicleLoans);
-
-    BigDecimal getAverageHighRiskLoanCost();
-
     List<Loan> findLoansByLoanRiskType(LoanRiskType loanRiskType);
-
-    void setAverageLoanCost(BigDecimal averageLoanCost);
 
     BigDecimal calculateAverageLoanCost(List<Loan> loans);
 
-    BigDecimal getAverageLoanCost();
-
     BigDecimal calculateAverageLoanCost(LoanRiskType loanRiskType);
 
-    void setAverageHighRiskLoanCost(BigDecimal averageHighRiskLoanCost);
-
-    BigDecimal getAverageCostOfHighRiskLoans();
-
-    BigDecimal getMaximumPriceOfNonExpiredLoans();
-
     BigDecimal calculateMaximumPriceOfNonExpiredLoans();
-
-    void setMaximumPriceOfNonExpiredLoans(BigDecimal maximumPriceOfNonExpiredLoans);
 
     Set<String> findVehicleModels();
 

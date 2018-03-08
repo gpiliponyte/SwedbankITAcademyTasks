@@ -3,16 +3,43 @@ package lt.swedbank.itacademy.service;
 import lt.swedbank.itacademy.domain.Loan;
 
 import java.util.Iterator;
-import java.util.List;
 
-public class LoanIterable implements Iterable {
+public class LoanIterable implements Iterable<Loan> {
 
-    private List<Loan> loans;
-    public Iterator<Loan> iterator(){
-        Iterator<Loan> loanIterator = loans.iterator();
-        return loanIterator;
+    private Loan[] loans;
 
+    public LoanIterable(Loan[] loans) {
+
+        this.loans = loans;
+
+    }
+
+    public Iterator<Loan> iterator() {
+
+        return new Iterator<Loan>() {
+
+            private int iteratorCounter = 0;
+
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
+
+            @Override
+            public boolean hasNext() {
+
+                return iteratorCounter < loans.length;
+
+            }
+
+            @Override
+            public Loan next() {
+
+                return loans[iteratorCounter++];
+
+            }
+
+        };
 
     }
 }
-

@@ -17,15 +17,12 @@ public class ClientApp {
 
         //high risk loans
 
-        service.setHighRiskLoans(service.findLoansByLoanRiskType(LoanRiskType.HIGH_RISK));
-
-        System.out.println(service.getHighRiskLoans().size());
+        System.out.println(service.findLoansByLoanRiskType(LoanRiskType.HIGH_RISK));
 
         //get average loan cost
 
-        service.setAverageLoanCost(service.calculateAverageLoanCost(Arrays.asList(loans)));
 
-        System.out.println(service.getAverageLoanCost());
+        System.out.println(service.calculateAverageLoanCost(Arrays.asList(loans)));
 
         //NORMAL_RISK
 
@@ -41,33 +38,25 @@ public class ClientApp {
 
         //GET AVERAGE OF HIGH RISK LOANS
 
-        service.setAverageHighRiskLoanCost(service.calculateAverageLoanCost(LoanRiskType.HIGH_RISK));
-
-        System.out.println(service.getAverageCostOfHighRiskLoans());
+        System.out.println(service.calculateAverageLoanCost(LoanRiskType.HIGH_RISK));
 
         //maximum
 
-        service.setMaximumPriceOfNonExpiredLoans(service.calculateMaximumPriceOfNonExpiredLoans());
-
-        System.out.println(service.getMaximumPriceOfNonExpiredLoans());
+        System.out.println(service.calculateMaximumPriceOfNonExpiredLoans());
 
         System.out.println("--------------------------------------");
 
         loans = getInitializer2().initializeLoans();
         service = new LoanService(loans);
 
-        service.setNormalRiskVehicleLoans(service.findVehicleLoansByRiskType(LoanRiskType.NORMAL_RISK));
-        System.out.println("1: " + service.getNormalRiskVehicleLoans().size());
+        System.out.println("1: " + service.findVehicleLoansByRiskType(LoanRiskType.NORMAL_RISK).size());
 
-        service.setMaximumAgeOfLowRiskLoanedVehicles(service.calculateMaximumAgeOfLowRiskVehicles());
-        System.out.println("2: " + service.getMaximumAgeOfLowRiskLoanedVehicles());
+        System.out.println("2: " + service.calculateMaximumAgeOfLowRiskVehicles());
 
-        service.setPersonalRealEstateLoans(service.findRealEstateLoansByPurpose(RealEstatePurpose.PERSONAL));
-        System.out.println("3: " + service.getPersonalRealEstateLoans().size());
+        System.out.println("3: " + service.findRealEstateLoansByPurpose(RealEstatePurpose.PERSONAL).size());
 
-        service.setExpiredHighRiskVehicleLoansOfHighestDuration(service.findExpiredVehicleLoansOfHighestDurationByRiskType(LoanRiskType.HIGH_RISK));
-        System.out.println("4: " + service.getExpiredHighRiskVehicleLoansOfHighestDuration().size() + " " +
-                service.getExpiredHighRiskVehicleLoansOfHighestDuration().get(0).getTermInYears() );
+        System.out.println("4: " + service.findExpiredVehicleLoansOfHighestDurationByRiskType(LoanRiskType.HIGH_RISK).size() + " " +
+                service.findExpiredVehicleLoansOfHighestDurationByRiskType(LoanRiskType.HIGH_RISK).get(0).getTermInYears() );
 
 
         System.out.println("--------------------------------------------");
@@ -75,14 +64,11 @@ public class ClientApp {
         loans = getInitializer3().initializeLoans();
         service = new LoanService(loans);
 
-        service.setLowRiskHarvesterLoans(service.findLowRiskHarvesterLoans());
-        System.out.println(service.getLowRiskHarvesterLoans().size());
+        System.out.println(service.findLowRiskHarvesterLoans().size());
 
-        service.setExpiredLandLoansInReservation(service.findExpiredLandLoansInReservation());
-        System.out.println(service.getExpiredLandLoansInReservation().size());
+        System.out.println(service.findExpiredLandLoansInReservation().size());
 
-        service.setLoansOfHigherThanAverageDepreciation(service.findLoansOfHigherThanAverageDepreciation());
-        System.out.println(service.getLoansOfHigherThanAverageDepreciation().size());
+        System.out.println(service.findLoansOfHigherThanAverageDepreciation().size());
     }
 
 

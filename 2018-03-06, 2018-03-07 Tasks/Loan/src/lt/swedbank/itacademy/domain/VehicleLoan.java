@@ -6,7 +6,7 @@ import java.util.Objects;
 /**
  * Created by p998gpy on 2018.03.07.
  */
-public class VehicleLoan extends Loan{
+public class VehicleLoan extends Loan {
 
     private Date manufactured;
     private String model;

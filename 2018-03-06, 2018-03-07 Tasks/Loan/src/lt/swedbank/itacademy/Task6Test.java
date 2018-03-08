@@ -3,6 +3,7 @@ package lt.swedbank.itacademy;
 import lt.swedbank.itacademy.domain.Loan;
 import lt.swedbank.itacademy.domain.LoanRiskType;
 import lt.swedbank.itacademy.service.LoanService;
+import lt.swedbank.itacademy.util.LoanUtil;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -52,6 +53,8 @@ public class Task6Test {
                 createLoan("23", NORMAL_RISK, HIGHEST_PRICE, HIGHEST_INTEREST_RATE, NEWER),
                 createLoan("24", NORMAL_RISK, HIGHEST_PRICE, HIGHEST_INTEREST_RATE, OLDER)
         );
+
+        addTotalLoanCost(loans);
         Collections.shuffle(loans);
 
         for (Loan loan : new LoanService((Loan[])loans.toArray()).prioritizeLoans()) {
@@ -59,6 +62,11 @@ public class Task6Test {
         }
     }
 
+    private static void addTotalLoanCost(List<Loan> loans){
+        for(Loan loan : loans){
+            loan.setTotalLoanCost(LoanUtil.calculateTotalLoanCost(loan));
+        }
+    }
     private static Loan createLoan(String name, LoanRiskType riskType, BigDecimal price, BigDecimal interestRate, Date creationDate) {
         Loan loan = new Loan();
         loan.setName(name);
