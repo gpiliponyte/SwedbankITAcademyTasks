@@ -8,8 +8,11 @@ public class CompoundInterestCalculator5 {
 
     private static final int PERCENT = 100;
 
+    //Some code could be extracted into methods, but, in general, your solution is correct!
+
     public static void main(String[] args) {
 
+        //Practice declaring your variables as close to a place in code, where they're actually used/needed, as possible.
         String input;
         double originalAmount;
         int numberOfInterestRates = 0;
@@ -52,6 +55,7 @@ public class CompoundInterestCalculator5 {
                     System.arraycopy(annualInterestRates, 0, copyOfAnnualInterestAmounts, 0, annualInterestRates.length);
                     annualInterestRates = copyOfAnnualInterestAmounts;
                     annualInterestRates[numberOfInterestRates - 1] = interestRate;
+                    //He he.. Sneaky way to skip "Invalid input! Try again!" printing. Clever.
                     continue;
                 }
             } catch (NumberFormatException e) {

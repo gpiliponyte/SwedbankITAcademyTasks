@@ -6,10 +6,12 @@ import java.util.Scanner;
 
 public class CompoundInterestCalculator3 {
 
+    //Good. Constant values should always be extracted into a separate final variable. Visibility and keywords order are also correct!
     private static final int PERCENT = 100;
 
     public static void main(String[] args) {
 
+        //Practice declaring your variables as close to a place in code, where they're actually used/needed, as possible.
         double originalAmount;
         int annualInterestRate;
         int periodLengthInYears;
@@ -29,6 +31,8 @@ public class CompoundInterestCalculator3 {
         System.out.print("Compound frequency: ");
         compoundFrequency = scanner.next();
 
+        //Interesting. Haven't seen this used before in my life :)
+        //But I guess, if you want to be safe for 100%, this is a way to go.
         scanner.close();
 
         frequency = findFrequency(compoundFrequency);
@@ -83,6 +87,7 @@ public class CompoundInterestCalculator3 {
                 return 4;
             case "H":
                 return 2;
+            //NICE! Finally someone consolidated "case Y:" and "default:"!
             default:
                 return 1;
         }
