@@ -12,7 +12,7 @@ public class LoanService implements LoanServiceInterface {
 
     private LoanIterable loans;
 
-
+    //The idea was, that you would pass an instance of "LoanIterable" directly into a constructor.
     public LoanService(Loan[] loans) {
         this.loans = new LoanIterable(loans);
     }
@@ -42,6 +42,7 @@ public class LoanService implements LoanServiceInterface {
 
 
         for (Loan loan : loans) {
+            //Never trust that "compareTo(..)" returns only -1, 0 or 1 values. See Intellij suggestion.
             if (loan instanceof VehicleLoan && LoanUtil.calculateVehicleDepreciation((VehicleLoan) loan).compareTo(averageDepreciation) == 1) {
                 loansOfHigherThanAverageDepreciation.add(loan);
             }
@@ -53,6 +54,7 @@ public class LoanService implements LoanServiceInterface {
     @Override
     public BigDecimal calculateAverageDepreciation() {
 
+        //Always use available constants from "BigDecimal" (short answer: better performance).
         BigDecimal sum = new BigDecimal(0);
         BigDecimal counter = new BigDecimal(0);
 
@@ -89,6 +91,7 @@ public class LoanService implements LoanServiceInterface {
     public Set<Loan> prioritizeLoans() {
         Set<Loan> loans = new TreeSet<>(new LoanComparator());
 
+        //This keyword is not needed. Use "this" only when you have a local variable with the same name (ex.: in setters).
         for (Loan loan : this.loans) {
             loans.add(loan);
         }
@@ -140,6 +143,8 @@ public class LoanService implements LoanServiceInterface {
     public List<Loan> findExpiredVehicleLoansOfHighestDurationByRiskType(LoanRiskType loanRiskType) {
 
         int highestDuration = 0;
+        //It's seems your "ArrayList" have lost a "diamond" :)
+        //Use more descriptive names for your variables - "list" is not good enough.
         List<Loan> list = new ArrayList();
         for (Loan loan : loans) {
             if (loan.getRiskType() == loanRiskType && !LoanUtil.isValid(loan) && loan instanceof VehicleLoan && loan.getTermInYears() > highestDuration) {
@@ -232,6 +237,7 @@ public class LoanService implements LoanServiceInterface {
     @Override
     public Map<LoanRiskType, List<Loan>> groupLoansByRiskType() {
 
+        //Again. Naming!
         Map<LoanRiskType, List<Loan>> map = new TreeMap<>();
 
         for (Loan loan : loans) {

@@ -62,6 +62,7 @@ public class Task6Test {
         }
     }
 
+    //I believe "totalLoanCost" should be calculated inside "Loan" class.
     private static void addTotalLoanCost(List<Loan> loans){
         for(Loan loan : loans){
             loan.setTotalLoanCost(LoanUtil.calculateTotalLoanCost(loan));

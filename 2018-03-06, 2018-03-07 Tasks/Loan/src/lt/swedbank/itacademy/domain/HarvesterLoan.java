@@ -2,6 +2,7 @@ package lt.swedbank.itacademy.domain;
 
 public class HarvesterLoan extends VehicleLoan{
     private int capacity;
+    //I believe "enginePower" should not be in this class
     private float enginePower;
 
     public int getCapacity() {
