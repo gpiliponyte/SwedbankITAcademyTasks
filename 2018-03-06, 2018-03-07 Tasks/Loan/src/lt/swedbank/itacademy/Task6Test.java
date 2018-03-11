@@ -2,6 +2,7 @@ package lt.swedbank.itacademy;
 
 import lt.swedbank.itacademy.domain.Loan;
 import lt.swedbank.itacademy.domain.LoanRiskType;
+import lt.swedbank.itacademy.service.LoanIterable;
 import lt.swedbank.itacademy.service.LoanService;
 import lt.swedbank.itacademy.util.LoanUtil;
 
@@ -54,17 +55,17 @@ public class Task6Test {
                 createLoan("24", NORMAL_RISK, HIGHEST_PRICE, HIGHEST_INTEREST_RATE, OLDER)
         );
 
-        addTotalLoanCost(loans);
-        Collections.shuffle(loans);
 
-        for (Loan loan : new LoanService((Loan[])loans.toArray()).prioritizeLoans()) {
-            System.out.print(loan.getName() + " ");
-        }
-    }
-
-    private static void addTotalLoanCost(List<Loan> loans){
+        //Adding missing attribute values to test data
         for(Loan loan : loans){
             loan.setTotalLoanCost(LoanUtil.calculateTotalLoanCost(loan));
+        }
+
+        Collections.shuffle(loans);
+
+      //  for ( Loan loan : new LoanService((new LoanIterable((Loan[]) loans.toArray()))).prioritizeLoans() ) {
+        for ( Loan loan : new LoanService(new LoanIterable((Loan[]) loans.toArray())).prioritizeLoans() ) {
+            System.out.print(loan.getName() + " ");
         }
     }
     private static Loan createLoan(String name, LoanRiskType riskType, BigDecimal price, BigDecimal interestRate, Date creationDate) {

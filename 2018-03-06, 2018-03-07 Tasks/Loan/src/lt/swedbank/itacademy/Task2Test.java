@@ -2,11 +2,13 @@ package lt.swedbank.itacademy;
 
 import lt.swedbank.itacademy.domain.Loan;
 import lt.swedbank.itacademy.domain.VehicleLoan;
+import lt.swedbank.itacademy.service.LoanIterable;
 import lt.swedbank.itacademy.service.LoanService;
 
 public class Task2Test {
     public static void main(String[] args) {
         LoanService loanService = new LoanService(
+                new LoanIterable(
                 createLoans(
                         "Scout Traveler",
                         "Audi A3",
@@ -14,6 +16,7 @@ public class Task2Test {
                         "Audi A3",
                         "BMW i8",
                         "Scout Traveler"
+                )
                 )
         );
 

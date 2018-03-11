@@ -1,6 +1,6 @@
 package lt.swedbank.itacademy.domain;
 
-public class CarLoan extends VehicleLoan implements Comparable {
+public class CarLoan extends VehicleLoan implements Comparable<CarLoan> {
     private float enginePower;
 
     public float getEnginePower() {
@@ -11,17 +11,18 @@ public class CarLoan extends VehicleLoan implements Comparable {
         this.enginePower = enginePower;
     }
 
-    public int compareTo(Object o) {
+    public int compareTo(CarLoan carLoan) {
 
-        CarLoan carLoan = (CarLoan) o;
+        int compareResult;
 
-        if (carLoan.getPrice().compareTo(getPrice()) != 0) {
-            return carLoan.getPrice().compareTo(getPrice());
+
+        if ((compareResult = carLoan.getPrice().compareTo(getPrice())) != 0) {
+            return compareResult;
         }
 
 
-        if(((Float)carLoan.getEnginePower()).compareTo((Float)getEnginePower()) != 0) {
-            return ((Float)carLoan.getEnginePower()).compareTo((Float)getEnginePower());
+        if((compareResult = ((Float)carLoan.getEnginePower()).compareTo((Float)getEnginePower())) != 0) {
+            return compareResult;
         }
 
 

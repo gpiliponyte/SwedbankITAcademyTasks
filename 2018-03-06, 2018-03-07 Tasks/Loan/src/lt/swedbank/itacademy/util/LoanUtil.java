@@ -10,15 +10,9 @@ public class LoanUtil {
 
     public static BigDecimal calculateVehicleDepreciation(VehicleLoan loan) {
 
-        int yearsInUse = (int) (DateUtil.differenceInDays(new Date(), loan.getManufactured())) / 365;
+        return loan.getPrice().multiply(new BigDecimal((int) (DateUtil.differenceInDays(new Date(), loan.getManufactured())) / 365)).
 
-        BigDecimal vehicleDepreciation =
-
-                loan.getPrice().multiply(new BigDecimal(yearsInUse)).
-
-                        divide(new BigDecimal(loan.getMaximumAge()), 2, BigDecimal.ROUND_UP);
-
-        return vehicleDepreciation;
+                divide(new BigDecimal(loan.getMaximumAge()), 2, BigDecimal.ROUND_UP);
     }
 
     public static boolean isValid(Loan loan){

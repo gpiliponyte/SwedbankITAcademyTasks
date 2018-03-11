@@ -2,9 +2,6 @@ package lt.swedbank.itacademy.domain;
 
 import java.util.Objects;
 
-/**
- * Created by p998gpy on 2018.03.07.
- */
 public class RealEstateLoan extends Loan {
 
     private String district;

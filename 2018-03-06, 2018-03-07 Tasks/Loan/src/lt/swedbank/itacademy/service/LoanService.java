@@ -10,11 +10,11 @@ import java.util.*;
 
 public class LoanService implements LoanServiceInterface {
 
-    private LoanIterable loans;
+    private Iterable<Loan> loans;
 
 
-    public LoanService(Loan[] loans) {
-        this.loans = new LoanIterable(loans);
+    public LoanService(Iterable<Loan> loans) {
+        this.loans = loans;
     }
 
 
@@ -42,7 +42,7 @@ public class LoanService implements LoanServiceInterface {
 
 
         for (Loan loan : loans) {
-            if (loan instanceof VehicleLoan && LoanUtil.calculateVehicleDepreciation((VehicleLoan) loan).compareTo(averageDepreciation) == 1) {
+            if (loan instanceof VehicleLoan && LoanUtil.calculateVehicleDepreciation((VehicleLoan) loan).compareTo(averageDepreciation) > 0) {
                 loansOfHigherThanAverageDepreciation.add(loan);
             }
         }
@@ -53,8 +53,8 @@ public class LoanService implements LoanServiceInterface {
     @Override
     public BigDecimal calculateAverageDepreciation() {
 
-        BigDecimal sum = new BigDecimal(0);
-        BigDecimal counter = new BigDecimal(0);
+        BigDecimal sum =  BigDecimal.ZERO;
+        BigDecimal counter = BigDecimal.ZERO;
 
         for (Loan loan : loans) {
 
@@ -103,7 +103,7 @@ public class LoanService implements LoanServiceInterface {
         int maximumAgeOfLowRiskVehicles = 0;
         int vehicleAge;
 
-        for (Loan loan : this.loans) {
+        for (Loan loan : loans) {
 
 
             if (loan.getRiskType() == LoanRiskType.LOW_RISK && loan instanceof VehicleLoan) {
@@ -140,7 +140,7 @@ public class LoanService implements LoanServiceInterface {
     public List<Loan> findExpiredVehicleLoansOfHighestDurationByRiskType(LoanRiskType loanRiskType) {
 
         int highestDuration = 0;
-        List<Loan> list = new ArrayList();
+        List<Loan> expiredVehicleLoansOfHighestDuration = new ArrayList<>();
         for (Loan loan : loans) {
             if (loan.getRiskType() == loanRiskType && !LoanUtil.isValid(loan) && loan instanceof VehicleLoan && loan.getTermInYears() > highestDuration) {
                 highestDuration = loan.getTermInYears();
@@ -150,12 +150,12 @@ public class LoanService implements LoanServiceInterface {
 
         for (Loan loan : loans) {
             if (loan.getRiskType() == loanRiskType && !LoanUtil.isValid(loan) && loan instanceof VehicleLoan && loan.getTermInYears() == highestDuration) {
-                list.add(loan);
+                expiredVehicleLoansOfHighestDuration.add(loan);
             }
         }
 
 
-        return list;
+        return expiredVehicleLoansOfHighestDuration;
 
     }
 
@@ -190,7 +190,7 @@ public class LoanService implements LoanServiceInterface {
 
     @Override
     public BigDecimal calculateAverageLoanCost(List<Loan> loans) {
-        BigDecimal totalCost = new BigDecimal(0);
+        BigDecimal totalCost = BigDecimal.ZERO;
         for (Loan loan : loans) {
             totalCost = totalCost.add(LoanUtil.calculateTotalLoanCost(loan));
         }
@@ -208,7 +208,7 @@ public class LoanService implements LoanServiceInterface {
 
     @Override
     public BigDecimal calculateMaximumPriceOfNonExpiredLoans() {
-        BigDecimal maximumPriceOfNonExpiredLoans = new BigDecimal(0);
+        BigDecimal maximumPriceOfNonExpiredLoans = BigDecimal.ZERO;
         for (Loan loan : loans) {
             if (LoanUtil.isValid(loan) && maximumPriceOfNonExpiredLoans.compareTo(loan.getPrice()) == -1) {
                 maximumPriceOfNonExpiredLoans = loan.getPrice();
@@ -232,16 +232,16 @@ public class LoanService implements LoanServiceInterface {
     @Override
     public Map<LoanRiskType, List<Loan>> groupLoansByRiskType() {
 
-        Map<LoanRiskType, List<Loan>> map = new TreeMap<>();
+        Map<LoanRiskType, List<Loan>> loansByRiskType = new TreeMap<>();
 
         for (Loan loan : loans) {
-            if (!map.containsKey(loan.getRiskType())) {
-                map.put(loan.getRiskType(), new ArrayList<Loan>());
+            if (!loansByRiskType.containsKey(loan.getRiskType())) {
+                loansByRiskType.put(loan.getRiskType(), new ArrayList<Loan>());
             }
 
-            map.get(loan.getRiskType()).add(loan);
+            loansByRiskType.get(loan.getRiskType()).add(loan);
         }
-        return map;
+        return loansByRiskType;
     }
 
 

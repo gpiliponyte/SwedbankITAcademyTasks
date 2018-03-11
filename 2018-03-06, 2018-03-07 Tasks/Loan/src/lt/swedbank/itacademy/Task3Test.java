@@ -2,11 +2,12 @@ package lt.swedbank.itacademy;
 
 import lt.swedbank.itacademy.domain.Loan;
 import lt.swedbank.itacademy.domain.LoanRiskType;
+import lt.swedbank.itacademy.service.LoanIterable;
 import lt.swedbank.itacademy.service.LoanService;
 
 public class Task3Test {
     public static void main(String[] args) {
-        LoanService loanService = new LoanService(
+        LoanService loanService = new LoanService( new LoanIterable(
                 createLoans(
                         new LoanData("1", LoanRiskType.LOW_RISK),
                         new LoanData("2", LoanRiskType.NORMAL_RISK),
@@ -14,7 +15,7 @@ public class Task3Test {
                         new LoanData("4", LoanRiskType.HIGH_RISK),
                         new LoanData("5", LoanRiskType.LOW_RISK),
                         new LoanData("6", LoanRiskType.NORMAL_RISK)
-                )
+                ))
         );
 
         for (LoanRiskType riskType : loanService.groupLoansByRiskType().keySet()) {

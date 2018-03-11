@@ -4,6 +4,7 @@ package lt.swedbank.itacademy.app;
         import lt.swedbank.itacademy.domain.Loan;
         import lt.swedbank.itacademy.domain.LoanRiskType;
         import lt.swedbank.itacademy.domain.RealEstatePurpose;
+        import lt.swedbank.itacademy.service.LoanIterable;
         import lt.swedbank.itacademy.service.LoanService;
 
         import java.util.Arrays;
@@ -13,7 +14,7 @@ public class ClientApp {
     public static void main(String[] args) {
 
         Loan[] loans = getInitializer1().initializeLoans();
-        LoanService service = new LoanService(loans);
+        LoanService service = new LoanService(new LoanIterable(loans));
 
         //high risk loans
 
@@ -47,7 +48,7 @@ public class ClientApp {
         System.out.println("--------------------------------------");
 
         loans = getInitializer2().initializeLoans();
-        service = new LoanService(loans);
+        service = new LoanService(new LoanIterable(loans));
 
         System.out.println("1: " + service.findVehicleLoansByRiskType(LoanRiskType.NORMAL_RISK).size());
 
@@ -62,7 +63,7 @@ public class ClientApp {
         System.out.println("--------------------------------------------");
 
         loans = getInitializer3().initializeLoans();
-        service = new LoanService(loans);
+        service = new LoanService(new LoanIterable(loans));
 
         System.out.println(service.findLowRiskHarvesterLoans().size());
 
