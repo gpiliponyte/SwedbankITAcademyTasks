@@ -2,6 +2,7 @@ package lt.swedbank.itacademy.domain;
 
 import java.util.Objects;
 
+//REMOVE ALL PIDs!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 /**
  * Created by p998gpy on 2018.03.07.
  */

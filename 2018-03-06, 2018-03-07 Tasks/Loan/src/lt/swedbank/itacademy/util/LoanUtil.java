@@ -12,6 +12,7 @@ public class LoanUtil {
 
         int yearsInUse = (int) (DateUtil.differenceInDays(new Date(), loan.getManufactured())) / 365;
 
+        //This variable is redundant. If you use a variable only once, better not to declare it at all.
         BigDecimal vehicleDepreciation =
 
                 loan.getPrice().multiply(new BigDecimal(yearsInUse)).
