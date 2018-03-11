@@ -10,28 +10,23 @@ public class CompoundInterestCalculator3 {
 
     public static void main(String[] args) {
 
-        double originalAmount;
-        int annualInterestRate;
-        int periodLengthInYears;
-        int frequency;
-        String compoundFrequency;
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Amount: ");
-        originalAmount = scanner.nextDouble();
+        double originalAmount = scanner.nextDouble();
 
         System.out.print("Interest rate (%): ");
-        annualInterestRate = scanner.nextInt();
+        int annualInterestRate = scanner.nextInt();
 
         System.out.print("Period length (years): ");
-        periodLengthInYears = scanner.nextInt();
+        int periodLengthInYears = scanner.nextInt();
 
         System.out.print("Compound frequency: ");
-        compoundFrequency = scanner.next();
+        String compoundFrequency = scanner.next();
 
         scanner.close();
 
-        frequency = findFrequency(compoundFrequency);
+        int frequency = findFrequency(compoundFrequency);
 
         double[] intermediateAmounts = new double[frequency * periodLengthInYears];
 

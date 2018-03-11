@@ -10,20 +10,10 @@ public class CompoundInterestCalculator5 {
 
     public static void main(String[] args) {
 
-        String input;
-        double originalAmount;
-        int numberOfInterestRates = 0;
-        double annualInterestRates[] = new double[numberOfInterestRates];
-        double interestRate;
-        int periodLengthInYears;
-        int frequency;
-        String compoundFrequency;
-        double newAmount;
-        double copyOfAnnualInterestAmounts[];
-        double yearlyInterestMatrix[][];
-
         Scanner scanner = new Scanner(System.in);
 
+        String input;
+        double originalAmount;
 
         while (true) {
             try {
@@ -38,6 +28,11 @@ public class CompoundInterestCalculator5 {
             System.out.println("Invalid input! Try again!");
         }
 
+
+        int numberOfInterestRates = 0;
+        double annualInterestRates[] = new double[numberOfInterestRates];
+        double copyOfAnnualInterestAmounts[];
+        double interestRate;
 
         do {
             try {
@@ -61,6 +56,8 @@ public class CompoundInterestCalculator5 {
         } while (true);
 
 
+        int periodLengthInYears;
+
         while (true) {
             try {
                 System.out.print("Period length (years): ");
@@ -75,6 +72,7 @@ public class CompoundInterestCalculator5 {
 
         yearlyInterestMatrix = new double[numberOfInterestRates][periodLengthInYears];
 
+        String compoundFrequency;
 
         while (true) {
             System.out.print("Compound frequency: ");
@@ -88,7 +86,10 @@ public class CompoundInterestCalculator5 {
 
         scanner.close();
 
-        frequency = findFrequency(compoundFrequency);
+        int frequency = findFrequency(compoundFrequency);
+
+        double newAmount;
+        double yearlyInterestMatrix[][];
 
 
         for (int i = 0; i < numberOfInterestRates; i++) {
